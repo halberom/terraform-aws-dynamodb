@@ -54,7 +54,7 @@ variable "context" {
 
 variable "label_order" {
   type        = "list"
-  default     = ["attribute", "name", "stage", "environment", "namespace"]
+  default     = []
   description = "The naming order of the id output and Name tag"
 }
 
