@@ -1,11 +1,15 @@
-module "dynamodb_label" {
-  source     = "git::https://github.com/cloudposse/terraform-terraform-label.git?ref=tags/0.1.6"
-  namespace  = "${var.namespace}"
-  stage      = "${var.stage}"
-  name       = "${var.name}"
-  delimiter  = "${var.delimiter}"
-  attributes = "${var.attributes}"
-  tags       = "${var.tags}"
+module "label" {
+  source             = "git::https://github.com/cloudposse/terraform-null-label.git?ref=0.5.0"
+  additional_tag_map = "${var.additional_tag_map}"
+  attributes         = "${var.attributes}"
+  context            = "${var.context}"
+  delimiter          = "${var.delimiter}"
+  environment        = "${var.environment}"
+  label_order        = "${var.label_order}"
+  name               = "${var.name}"
+  namespace          = "${var.namespace}"
+  stage              = "${var.stage}"
+  tags               = "${var.tags}"
 }
 
 locals {
@@ -38,7 +42,7 @@ resource "null_resource" "global_secondary_indexe_names" {
 }
 
 resource "aws_dynamodb_table" "default" {
-  name             = "${module.dynamodb_label.id}"
+  name             = "${module.label.id}"
   read_capacity    = "${var.autoscale_min_read_capacity}"
   write_capacity   = "${var.autoscale_min_write_capacity}"
   hash_key         = "${var.hash_key}"
@@ -66,17 +70,13 @@ resource "aws_dynamodb_table" "default" {
     enabled        = true
   }
 
-  tags = "${module.dynamodb_label.tags}"
+  tags = "${module.label.tags}"
 }
 
 module "dynamodb_autoscaler" {
   source                       = "git::https://github.com/cloudposse/terraform-aws-dynamodb-autoscaler.git?ref=tags/0.2.4"
   enabled                      = "${var.enable_autoscaler}"
-  namespace                    = "${var.namespace}"
-  stage                        = "${var.stage}"
-  name                         = "${var.name}"
-  delimiter                    = "${var.delimiter}"
-  attributes                   = "${var.attributes}"
+  context                      = "${module.label.context}"
   dynamodb_table_name          = "${aws_dynamodb_table.default.id}"
   dynamodb_table_arn           = "${aws_dynamodb_table.default.arn}"
   dynamodb_indexes             = ["${null_resource.global_secondary_indexe_names.*.triggers.name}"]

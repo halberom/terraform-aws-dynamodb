@@ -16,7 +16,7 @@ This module requires [AWS Provider](https://github.com/terraform-providers/terra
 
 ---
 
-This project is part of our comprehensive ["SweetOps"](https://docs.cloudposse.com) approach towards DevOps. 
+This project is part of our comprehensive ["SweetOps"](https://docs.cloudposse.com) approach towards DevOps.
 
 
 It's 100% Open Source and licensed under the [APACHE2](LICENSE).
@@ -122,6 +122,7 @@ Available targets:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| additional_tag_map | Additional tags for appending to each tag map | map | `<map>` | no |
 | attributes | Additional attributes (e.g. `policy` or `role`) | list | `<list>` | no |
 | autoscale_max_read_capacity | DynamoDB autoscaling max read capacity | string | `20` | no |
 | autoscale_max_write_capacity | DynamoDB autoscaling max write capacity | string | `20` | no |
@@ -130,6 +131,7 @@ Available targets:
 | autoscale_read_target | The target value (in %) for DynamoDB read autoscaling | string | `50` | no |
 | autoscale_write_target | The target value (in %) for DynamoDB write autoscaling | string | `50` | no |
 | delimiter | Delimiter to be used between `namespace`, `stage`, `name`, and `attributes` | string | `-` | no |
+| context | Default context to use for passing state between label invocations | map | `<map>` | no |
 | dynamodb_attributes | Additional DynamoDB attributes in the form of a list of mapped values | list | `<list>` | no |
 | enable_autoscaler | Flag to enable/disable DynamoDB autoscaling | string | `true` | no |
 | enable_encryption | Enable DynamoDB server-side encryption | string | `true` | no |
@@ -137,6 +139,7 @@ Available targets:
 | enable_streams | Enable DynamoDB streams | string | `false` | no |
 | global_secondary_index_map | Additional global secondary indexes in the form of a list of mapped values | list | `<list>` | no |
 | hash_key | DynamoDB table Hash Key | string | - | yes |
+| label_order | The naming order of the id output and Name tag | list | `<list>` | no |
 | name | Name  (e.g. `app` or `cluster`) | string | - | yes |
 | namespace | Namespace (e.g. `eg` or `cp`) | string | - | yes |
 | range_key | DynamoDB table Range Key | string | `` | no |
@@ -181,9 +184,9 @@ File a GitHub [issue](https://github.com/cloudposse/terraform-aws-dynamodb/issue
 
 ## Commercial Support
 
-Work directly with our team of DevOps experts via email, slack, and video conferencing. 
+Work directly with our team of DevOps experts via email, slack, and video conferencing.
 
-We provide [*commercial support*][commercial_support] for all of our [Open Source][github] projects. As a *Dedicated Support* customer, you have access to our team of subject matter experts at a fraction of the cost of a full-time engineer. 
+We provide [*commercial support*][commercial_support] for all of our [Open Source][github] projects. As a *Dedicated Support* customer, you have access to our team of subject matter experts at a fraction of the cost of a full-time engineer.
 
 [![E-Mail](https://img.shields.io/badge/email-hello@cloudposse.com-blue.svg)](mailto:hello@cloudposse.com)
 
@@ -193,7 +196,7 @@ We provide [*commercial support*][commercial_support] for all of our [Open Sourc
 - **Bug Fixes.** We'll rapidly work to fix any bugs in our projects.
 - **Build New Terraform Modules.** We'll develop original modules to provision infrastructure.
 - **Cloud Architecture.** We'll assist with your cloud strategy and design.
-- **Implementation.** We'll provide hands-on support to implement our reference architectures. 
+- **Implementation.** We'll provide hands-on support to implement our reference architectures.
 
 
 ## Community Forum
@@ -227,9 +230,9 @@ Copyright © 2017-2018 [Cloud Posse, LLC](https://cloudposse.com)
 
 
 
-## License 
+## License
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 See [LICENSE](LICENSE) for full details.
 
@@ -270,7 +273,7 @@ This project is maintained and funded by [Cloud Posse, LLC][website]. Like it? P
 
 We're a [DevOps Professional Services][hire] company based in Los Angeles, CA. We love [Open Source Software](https://github.com/cloudposse/)!
 
-We offer paid support on all of our projects.  
+We offer paid support on all of our projects.
 
 Check out [our other projects][github], [apply for a job][jobs], or [hire us][hire] to help with your cloud strategy and implementation.
 

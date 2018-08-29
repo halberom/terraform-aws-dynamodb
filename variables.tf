@@ -3,6 +3,10 @@ variable "namespace" {
   description = "Namespace (e.g. `eg` or `cp`)"
 }
 
+variable "environment" {
+  description = "the environment of the stack (E.g. dev)"
+}
+
 variable "stage" {
   type        = "string"
   description = "Stage (e.g. `prod`, `dev`, `staging`, `infra`)"
@@ -29,6 +33,24 @@ variable "tags" {
   type        = "map"
   default     = {}
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)"
+}
+
+variable "additional_tag_map" {
+  type        = "map"
+  default     = {}
+  description = "Additional tags for appending to each tag map"
+}
+
+variable "context" {
+  type        = "map"
+  default     = {}
+  description = "Default context to use for passing state between label invocations"
+}
+
+variable "label_order" {
+  type        = "list"
+  default     = ["attribute", "name", "stage", "environment", "namespace"]
+  description = "The naming order of the id output and Name tag"
 }
 
 variable "autoscale_write_target" {
