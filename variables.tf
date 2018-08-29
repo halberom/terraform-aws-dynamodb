@@ -1,19 +1,24 @@
 variable "namespace" {
   type        = "string"
+  default     = ""
   description = "Namespace (e.g. `eg` or `cp`)"
 }
 
 variable "environment" {
+  type        = "string"
+  default     = ""
   description = "the environment of the stack (E.g. dev)"
 }
 
 variable "stage" {
   type        = "string"
+  default     = ""
   description = "Stage (e.g. `prod`, `dev`, `staging`, `infra`)"
 }
 
 variable "name" {
   type        = "string"
+  default     = ""
   description = "Name  (e.g. `app` or `cluster`)"
 }
 
